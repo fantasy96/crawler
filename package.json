@@ -1,0 +1,13 @@
+{
+  "name": "crawler-system",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dcc": "cd ./development && docker-compose",
+    "dcc:up": "yarn dcc up",
+    "dcc:down":"yarn dcc down",
+    "unit-test":"cd src/web-service && yarn test"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}

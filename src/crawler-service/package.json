@@ -1,0 +1,33 @@
+{
+  "name": "crawler-service",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "yarn setup && env $(grep -v '^#' .env) nodemon server.js",
+    "start": "yarn setup && env $(grep -v '^#' .env) node server.js",
+    "setup": "yarn setup:create-env",
+    "setup:create-env": "cp .env.template .env"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.5",
+    "express": "^4.17.1",
+    "got": "^11.8.1",
+    "lodash": "^4.17.21",
+    "module-alias": "^2.2.2",
+    "mongoose": "^5.11.18",
+    "puppeteer": "^7.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "_moduleAliases": {
+    "@root": "./",
+    "routes": "./routes",
+    "@middleware": "./middleware",
+    "@services": "./services",
+    "@constants": "./constants",
+    "@helpers": "./helpers"
+  }
+}

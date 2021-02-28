@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  crawler-service:
+    build:
+      context: ../src/crawler-service
+      dockerfile: ./Dockerfile
+    depends_on:
+      - database
+    networks:
+      - crawler-system-network
+    volumes:
+      - ../src/crawler-service:/src/crawler-service
+  web-service:
+    build:
+      context: ../src/web-service
+      dockerfile: ./Dockerfile
+    depends_on:
+      - database
+    ports:
+      - 8001:8001
+    networks:
+      - crawler-system-network
+    volumes:
+      - ../src/web-service:/src/web-service
+  database:
+    image: mongo:4.2.3-bionic
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=crawler-system
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    volumes:
+      - ./mongodb/data:/data/db
+      - ./mongodb/mongoconfig:/data/configdb
+    networks:
+      - crawler-system-network
+networks:
+  crawler-system-network:
